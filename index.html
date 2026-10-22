@@ -40,6 +40,7 @@
         
         <!-- KOLOM 1: PANEL KIRI -->
         <section class="col-span-5 flex flex-col gap-2.5">
+            <!-- Battery System -->
             <div class="card p-3.5">
                 <p class="text-[10px] font-bold text-slate-400 mb-1">BATTERY SYSTEM</p>
                 <div class="flex items-center justify-between gap-4">
@@ -50,6 +51,7 @@
                 </div>
             </div>
 
+            <!-- Battery Parameters -->
             <div class="card p-3.5">
                 <p class="text-[10px] font-bold text-slate-400 mb-2">BATTERY PARAMETERS</p>
                 <div class="grid grid-cols-2 gap-3">
@@ -62,7 +64,7 @@
                             <path class="arc-bg" d="M 10 50 A 40 40 0 0 1 90 50" />
                             <path id="arc-current" class="arc-val" d="M 10 50 A 40 40 0 0 1 90 50" stroke-dasharray="126" stroke-dashoffset="120" />
                         </svg>
-                        <span id="txt-current" class="text-base font-bold -mt-4">2.1 A</span>
+                        <span id="txt-current" class="text-base font-bold -mt-4">1.2 A</span>
                         <div class="w-full flex justify-between text-[8px] text-slate-500 px-2">
                             <span>0A</span><span>120A</span>
                         </div>
@@ -85,6 +87,7 @@
                 </div>
             </div>
 
+            <!-- Health & Range -->
             <div class="grid grid-cols-2 gap-2.5">
                 <div class="card p-3">
                     <p class="text-[10px] font-bold text-slate-400">BATTERY HEALTH</p>
@@ -98,6 +101,7 @@
                 </div>
             </div>
 
+            <!-- Fuel Tank -->
             <div class="card p-3">
                 <p class="text-[10px] font-bold text-slate-400">FUEL TANK</p>
                 <p id="txt-fuel" class="text-2xl font-bold my-1">81%</p>
@@ -111,7 +115,7 @@
             </div>
         </section>
 
-        <!-- KOLOM 2: PANEL TENGAH MOBIL (MOBIL SVG INTERNAL ENBEDDED) -->
+        <!-- KOLOM 2: PANEL TENGAH MOBIL -->
         <section class="col-span-4 card p-4 flex flex-col justify-between items-center relative">
             <div class="flex gap-4 text-xs text-slate-400 font-semibold border-b border-slate-800 w-full justify-center pb-2">
                 <span>Engine</span>
@@ -119,35 +123,13 @@
                 <span>Wheels</span>
             </div>
 
-            <!-- MOBIL VEKTOR SVG INTEGRATED -->
+            <!-- Visual Mobil Menggunakan PNG Online Transparan -->
             <div class="relative my-auto flex justify-center items-center w-full">
-                <svg class="h-80 w-auto" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Ban -->
-                    <rect x="15" y="50" width="20" height="45" rx="5" fill="#334155"/>
-                    <rect x="165" y="50" width="20" height="45" rx="5" fill="#334155"/>
-                    <rect x="15" y="305" width="20" height="45" rx="5" fill="#334155"/>
-                    <rect x="165" y="305" width="20" height="45" rx="5" fill="#334155"/>
-                    
-                    <!-- Bodi Mobil -->
-                    <path d="M30 80 C30 30, 170 30, 170 80 L175 310 C175 370, 25 370, 25 310 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-                    <!-- Kaca Depan -->
-                    <path d="M45 110 C45 90, 155 90, 155 110 L145 150 C145 155, 55 155, 55 150 Z" fill="#1e293b"/>
-                    <!-- Atap -->
-                    <path d="M50 160 L150 160 L145 250 L55 250 Z" fill="#e2e8f0"/>
-                    <!-- Kaca Belakang -->
-                    <path d="M55 260 L145 260 L150 285 L50 285 Z" fill="#1e293b"/>
-                    <!-- Lampu Depan & Spion -->
-                    <ellipse cx="45" cy="45" rx="10" ry="4" fill="#38bdf8"/>
-                    <ellipse cx="155" cy="45" rx="10" ry="4" fill="#38bdf8"/>
-                    <rect x="5" y="120" width="15" height="10" rx="3" fill="#cbd5e1"/>
-                    <rect x="180" y="120" width="15" height="10" rx="3" fill="#cbd5e1"/>
-                </svg>
-
-                <!-- TPMS Floating Numbers -->
-                <span class="absolute top-10 left-4 text-green-400 font-bold text-sm">33</span>
-                <span class="absolute top-10 right-4 text-green-400 font-bold text-sm">33</span>
-                <span class="absolute bottom-10 left-4 text-green-400 font-bold text-sm">37</span>
-                <span class="absolute bottom-10 right-4 text-green-400 font-bold text-sm">37</span>
+                <img src="https://purepng.com/public/uploads/large/purepng.com-white-tesla-model-s-carcarvehiclestransporttesla-1701527484323e200p.png" alt="Mobil EV" class="h-72 w-auto object-contain filter brightness-110">
+                <span class="absolute top-10 left-12 text-green-400 font-bold text-sm">33</span>
+                <span class="absolute top-10 right-12 text-green-400 font-bold text-sm">33</span>
+                <span class="absolute bottom-10 left-12 text-green-400 font-bold text-sm">37</span>
+                <span class="absolute bottom-10 right-12 text-green-400 font-bold text-sm">37</span>
             </div>
 
             <div class="flex justify-between items-center w-full px-4 text-xs">
@@ -163,14 +145,14 @@
                 <p class="text-[10px] font-bold text-slate-400 w-full text-left mb-2">SPEEDOMETER</p>
                 <div class="text-center my-auto">
                     <p class="text-xs text-slate-400 font-bold">KECEPATAN</p>
-                    <p id="txt-speed" class="text-6xl font-bold text-white my-2">42</p>
+                    <p id="txt-speed" class="text-6xl font-bold text-white my-2">56</p>
                     <p class="text-xs text-slate-400 font-bold">km/h</p>
                 </div>
             </div>
             <div class="card p-4">
                 <div class="flex justify-between text-xs font-bold mb-2">
                     <span class="text-slate-400">TOTAL POWER DRAW</span>
-                    <span id="txt-power" class="text-white">1.18 kW</span>
+                    <span id="txt-power" class="text-white">0.67 kW</span>
                 </div>
                 <div class="h-20 bg-slate-900 rounded flex items-end p-1 gap-1">
                     <div class="bg-sky-400 w-full h-[30%] rounded-t"></div>
