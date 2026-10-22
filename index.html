@@ -17,7 +17,7 @@
     <!-- HEADER BAR -->
     <header class="card p-3 mb-2 flex justify-between items-center">
         <div class="flex items-center gap-3">
-            <img src="logo_polibatam.png" alt="Polibatam" class="h-10 w-auto bg-white p-1 rounded">
+            <div class="h-10 px-3 bg-white text-slate-900 font-bold rounded flex items-center justify-center text-xs tracking-wider">POLIBATAM</div>
             <div>
                 <h1 class="font-bold text-sm leading-none">SMART E-VEHICLE MONITORING SYSTEM</h1>
                 <p class="text-[10px] text-slate-400">Sistem Pemantauan Kendaraan Listrik • Politeknik Negeri Batam</p>
@@ -31,14 +31,14 @@
         <div class="flex items-center gap-4 text-xs font-bold">
             <span id="clock" class="text-base">20:51</span>
             <span class="text-sky-400">Atmarahil Satyaki</span>
-            <img src="logo_tre.png" alt="TRE" class="h-10 w-auto">
+            <div class="h-10 px-3 bg-sky-950 border border-sky-800 text-sky-400 font-bold rounded flex items-center justify-center text-xs">TRE</div>
         </div>
     </header>
 
-    <!-- MAIN DASHBOARD (3 KOLOM) -->
+    <!-- MAIN DASHBOARD -->
     <main class="grid grid-cols-12 gap-3 flex-grow">
         
-        <!-- KOLOM 1: PANEL KIRI (5 Grid) -->
+        <!-- KOLOM 1: PANEL KIRI -->
         <section class="col-span-5 flex flex-col gap-2.5">
             <!-- Battery System -->
             <div class="card p-3.5">
@@ -55,7 +55,6 @@
             <div class="card p-3.5">
                 <p class="text-[10px] font-bold text-slate-400 mb-2">BATTERY PARAMETERS</p>
                 <div class="grid grid-cols-2 gap-3">
-                    <!-- Gauge Arus -->
                     <div class="flex flex-col items-center">
                         <div class="w-full flex justify-between items-center text-[10px] font-bold mb-1">
                             <span>Arus<br><span class="text-slate-500">SENSOR/ARUS</span></span>
@@ -71,7 +70,6 @@
                         </div>
                     </div>
 
-                    <!-- Gauge Tegangan -->
                     <div class="flex flex-col items-center">
                         <div class="w-full flex justify-between items-center text-[10px] font-bold mb-1">
                             <span>Tegangan<br><span class="text-slate-500">SENSOR/TEGANGAN</span></span>
@@ -117,7 +115,7 @@
             </div>
         </section>
 
-        <!-- KOLOM 2: PANEL TENGAH MOBIL (4 Grid) -->
+        <!-- KOLOM 2: PANEL TENGAH MOBIL -->
         <section class="col-span-4 card p-4 flex flex-col justify-between items-center relative">
             <div class="flex gap-4 text-xs text-slate-400 font-semibold border-b border-slate-800 w-full justify-center pb-2">
                 <span>Engine</span>
@@ -125,17 +123,15 @@
                 <span>Wheels</span>
             </div>
 
-            <!-- Visual Mobil Top-View (Memakai car_topview.png) -->
+            <!-- Visual Mobil Menggunakan PNG Online Transparan -->
             <div class="relative my-auto flex justify-center items-center w-full">
-                <img src="car_topview.png" alt="Mobil EV" class="h-80 w-auto object-contain">
-                <!-- TPMS Floating Numbers -->
-                <span class="absolute top-12 left-10 text-green-400 font-bold text-sm">33</span>
-                <span class="absolute top-12 right-10 text-green-400 font-bold text-sm">33</span>
-                <span class="absolute bottom-12 left-10 text-green-400 font-bold text-sm">37</span>
-                <span class="absolute bottom-12 right-10 text-green-400 font-bold text-sm">37</span>
+                <img src="https://purepng.com/public/uploads/large/purepng.com-white-tesla-model-s-carcarvehiclestransporttesla-1701527484323e200p.png" alt="Mobil EV" class="h-72 w-auto object-contain filter brightness-110">
+                <span class="absolute top-10 left-12 text-green-400 font-bold text-sm">33</span>
+                <span class="absolute top-10 right-12 text-green-400 font-bold text-sm">33</span>
+                <span class="absolute bottom-10 left-12 text-green-400 font-bold text-sm">37</span>
+                <span class="absolute bottom-10 right-12 text-green-400 font-bold text-sm">37</span>
             </div>
 
-            <!-- Controls Bottom -->
             <div class="flex justify-between items-center w-full px-4 text-xs">
                 <div class="text-center">🔊<br><span class="font-bold">45%</span></div>
                 <button class="w-12 h-12 bg-pink-600 rounded-full font-bold text-white shadow-lg shadow-pink-600/50">AUTO</button>
@@ -143,7 +139,7 @@
             </div>
         </section>
 
-        <!-- KOLOM 3: PANEL KANAN SPEEDOMETER (3 Grid) -->
+        <!-- KOLOM 3: PANEL KANAN SPEEDOMETER -->
         <section class="col-span-3 flex flex-col gap-2.5">
             <div class="card p-4 flex flex-col items-center justify-center flex-grow">
                 <p class="text-[10px] font-bold text-slate-400 w-full text-left mb-2">SPEEDOMETER</p>
@@ -177,7 +173,6 @@
         <div id="pill-mode" class="bg-sky-950 border border-sky-700 text-sky-400 p-2.5 rounded-full text-center">🚗 MODE PENGGERAK: EV MODE</div>
     </footer>
 
-    <!-- SIMULASI REALTIME TELEMETRI -->
     <script>
         function updateTelemetry() {
             const speed = Math.floor(40 + Math.random() * 20);
