@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart E-Vehicle Monitoring System - Polibatam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #070b14; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .card { background-color: #0b1324; border: 1px solid #1e293b; border-radius: 12px; }
+        .arc-bg { stroke: #1e293b; fill: none; stroke-width: 8; stroke-linecap: round; }
+        .arc-val { stroke: #38bdf8; fill: none; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 0.3s ease; }
+    </style>
+</head>
+<body class="p-4 min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER BAR -->
+    <header class="card p-3 mb-3 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white rounded flex items-center justify-center font-bold text-slate-800 text-xs">POLIBATAM</div>
+            <div>
+                <h1 class="font-bold text-sm leading-none">SMART E-VEHICLE MONITORING SYSTEM</h1>
+                <p class="text-[10px] text-slate-400">Sistem Pemantauan Kendaraan Listrik • Politeknik Negeri Batam</p>
+            </div>
+        </div>
+        <div class="flex gap-2">
+            <button onclick="setMode('EV')" id="btn-ev" class="px-3 py-1 bg-sky-600 text-white text-xs font-bold rounded">⚡ EV</button>
+            <button onclick="setMode('HYBRID')" id="btn-hev" class="px-3 py-1 bg-slate-800 text-slate-400 text-xs font-bold rounded">🔄 HEV</button>
+            <button onclick="setMode('ICE')" id="btn-ice" class="px-3 py-1 bg-slate-800 text-slate-400 text-xs font-bold rounded">⛽ ICE</button>
+        </div>
+        <div class="flex items-center gap-4 text-xs font-bold">
+            <span id="clock" class="text-base">20:51</span>
+            <span class="text-sky-400">Atmarahil Satyaki</span>
+            <div class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center text-xs">TRE</div>
+        </div>
+    </header>
+
+    <!-- MAIN DASHBOARD (3 KOLOM) -->
+    <main class="grid grid-cols-12 gap-3 flex-grow">
+        
+        <!-- KOLOM 1: PANEL KIRI (5 Grid) -->
+        <section class="col-span-5 flex flex-col gap-3">
+            <!-- Battery System -->
+            <div class="card p-4">
+                <p class="text-[10px] font-bold text-slate-400 mb-1">BATTERY SYSTEM</p>
+                <div class="flex items-center justify-between gap-4">
+                    <span id="txt-soc" class="text-4xl font-bold">69%</span>
+                    <div class="w-full bg-slate-900 border-2 border-green-500 p-1 rounded-lg h-8">
+                        <div id="bar-soc" class="bg-green-500 h-full rounded transition-all duration-300" style="width: 69%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Battery Parameters -->
+            <div class="card p-4">
+                <p class="text-[10px] font-bold text-slate-400 mb-3">BATTERY PARAMETERS</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Gauge Arus -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-full flex justify-between items-center text-[10px] font-bold mb-1">
+                            <span>Arus<br><span class="text-slate-500">SENSOR/ARUS</span></span>
+                            <span class="text-green-400 bg-green-950 px-1.5 py-0.5 rounded">● NORMAL</span>
+                        </div>
+                        <svg class="w-36 h-20" viewBox="0 0 100 55">
+                            <path class="arc-bg" d="M 10 50 A 40 40 0 0 1 90 50" />
+                            <path id="arc-current" class="arc-val" d="M 10 50 A 40 40 0 0 1 90 50" stroke-dasharray="126" stroke-dashoffset="120" />
+                        </svg>
+                        <span id="txt-current" class="text-sm font-bold -mt-3">2.7 A</span>
+                        <div class="w-full flex justify-between text-[8px] text-slate-500 px-2">
+                            <span>0A</span><span>120A</span>
+                        </div>
+                    </div>
+
+                    <!-- Gauge Tegangan -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-full flex justify-between items-center text-[10px] font-bold mb-1">
+                            <span>Tegangan<br><span class="text-slate-500">SENSOR/TEGANGAN</span></span>
+                            <span class="text-green-400 bg-green-950 px-1.5 py-0.5 rounded">● NORMAL</span>
+                        </div>
+                        <svg class="w-36 h-20" viewBox="0 0 100 55">
+                            <path class="arc-bg" d="M 10 50 A 40 40 0 0 1 90 50" />
+                            <path id="arc-voltage" class="arc-val" d="M 10 50 A 40 40 0 0 1 90 50" stroke-dasharray="126" stroke-dashoffset="40" />
+                        </svg>
+                        <span id="txt-voltage" class="text-sm font-bold -mt-3">76.6 V</span>
+                        <div class="w-full flex justify-between text-[8px] text-slate-500 px-2">
+                            <span>0V</span><span>120V</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health & Range -->
+            <div class="grid grid-cols-2 gap-3">
+                <div class="card p-3">
+                    <p class="text-[10px] font-bold text-slate-400">BATTERY HEALTH</p>
+                    <p class="text-base font-bold text-green-400 my-1">🔋 94% SOH</p>
+                    <p class="text-[9px] text-slate-500">State of Health</p>
+                </div>
+                <div class="card p-3">
+                    <p class="text-[10px] font-bold text-slate-400">DAYA MAKSIMAL</p>
+                    <p class="text-xs font-bold text-white mt-1">📍 EST. RANGE</p>
+                    <p class="text-base font-bold text-white">120 km</p>
+                </div>
+            </div>
+
+            <!-- Fuel Tank -->
+            <div class="card p-3">
+                <p class="text-[10px] font-bold text-slate-400">FUEL TANK</p>
+                <p id="txt-fuel" class="text-2xl font-bold my-1">81%</p>
+                <div class="w-full bg-slate-800 rounded-full h-1.5 mb-2">
+                    <div id="bar-fuel" class="bg-sky-400 h-1.5 rounded-full" style="width: 81%;"></div>
+                </div>
+                <div class="flex justify-between text-[10px] text-slate-400">
+                    <span>Tangki Bensin</span>
+                    <span id="txt-liters">36.5 L / 45.0 L</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- KOLOM 2: PANEL TENGAH MOBIL (4 Grid) -->
+        <section class="col-span-4 card p-4 flex flex-col justify-between items-center relative">
+            <div class="flex gap-4 text-xs text-slate-400 font-semibold border-b border-slate-800 w-full justify-center pb-2">
+                <span>Engine</span>
+                <span class="text-white border-b-2 border-white pb-1">Whole Car</span>
+                <span>Wheels</span>
+            </div>
+
+            <!-- Visual Mobil Top-View -->
+            <div class="relative my-auto flex justify-center items-center w-full">
+                <div class="w-40 h-80 bg-slate-900 border-2 border-slate-700 rounded-3xl flex items-center justify-center text-slate-600 font-bold">
+                    [ VISUAL MOBIL ]
+                </div>
+                <!-- TPMS Floating Numbers -->
+                <span class="absolute top-10 left-6 text-green-400 font-bold text-xs">33</span>
+                <span class="absolute top-10 right-6 text-green-400 font-bold text-xs">33</span>
+                <span class="absolute bottom-10 left-6 text-green-400 font-bold text-xs">37</span>
+                <span class="absolute bottom-10 right-6 text-green-400 font-bold text-xs">37</span>
+            </div>
+
+            <!-- Controls Bottom -->
+            <div class="flex justify-between items-center w-full px-4 text-xs">
+                <div class="text-center">🔊<br><span class="font-bold">45%</span></div>
+                <button class="w-12 h-12 bg-pink-600 rounded-full font-bold text-white shadow-lg shadow-pink-600/50">AUTO</button>
+                <div class="text-center">♨️<br><span class="font-bold">20°C</span></div>
+            </div>
+        </section>
+
+        <!-- KOLOM 3: PANEL KANAN SPEEDOMETER (3 Grid) -->
+        <section class="col-span-3 flex flex-col gap-3">
+            <div class="card p-4 flex flex-col items-center justify-center flex-grow">
+                <p class="text-[10px] font-bold text-slate-400 w-full text-left mb-2">SPEEDOMETER</p>
+                <div class="text-center my-auto">
+                    <p class="text-xs text-slate-400 font-bold">KECEPATAN</p>
+                    <p id="txt-speed" class="text-5xl font-bold text-white my-2">51</p>
+                    <p class="text-xs text-slate-400 font-bold">km/h</p>
+                </div>
+            </div>
+            <div class="card p-4">
+                <div class="flex justify-between text-xs font-bold mb-2">
+                    <span class="text-slate-400">TOTAL POWER DRAW</span>
+                    <span id="txt-power" class="text-white">1.52 kW</span>
+                </div>
+                <div class="h-20 bg-slate-900 rounded flex items-end p-1 gap-1">
+                    <div class="bg-sky-400 w-full h-[30%] rounded-t"></div>
+                    <div class="bg-sky-400 w-full h-[50%] rounded-t"></div>
+                    <div class="bg-sky-400 w-full h-[40%] rounded-t"></div>
+                    <div class="bg-sky-400 w-full h-[80%] rounded-t"></div>
+                    <div class="bg-sky-400 w-full h-[65%] rounded-t"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- BOTTOM PILLS -->
+    <footer class="grid grid-cols-4 gap-3 mt-3 text-xs font-bold">
+        <div class="bg-green-950 border border-green-700 text-green-400 p-2.5 rounded-full text-center">⚙️ SEMUA BAN NORMAL (33-37 PSI)</div>
+        <div class="bg-amber-950 border border-amber-700 text-amber-400 p-2.5 rounded-full text-center">⚡ KONDISI BATERAI: DISCHARGING</div>
+        <div class="bg-green-950 border border-green-700 text-green-400 p-2.5 rounded-full text-center">🛡️ SISTEM KEAMANAN AMAN</div>
+        <div id="pill-mode" class="bg-sky-950 border border-sky-700 text-sky-400 p-2.5 rounded-full text-center">🚗 MODE PENGGERAK: EV MODE</div>
+    </footer>
+
+    <!-- SIMULASI REALTIME TELEMETRI -->
+    <script>
+        function updateTelemetry() {
+            const speed = Math.floor(40 + Math.random() * 20);
+            const current = (1.0 + Math.random() * 3.0).toFixed(1);
+            const power = (current * 0.56).toFixed(2);
+            
+            document.getElementById('txt-speed').innerText = speed;
+            document.getElementById('txt-current').innerText = `${current} A`;
+            document.getElementById('txt-power').innerText = `${power} kW`;
+
+            // Update Jam
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toTimeString().substring(0, 5);
+        }
+        setInterval(updateTelemetry, 1000);
+
+        function setMode(mode) {
+            document.getElementById('pill-mode').innerText = `🚗 MODE PENGGERAK: ${mode} MODE`;
+        }
+    </script>
+</body>
+</html>
